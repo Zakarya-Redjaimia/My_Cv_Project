@@ -1,0 +1,10 @@
+import marshal
+myfile = input("Write Path File:")
+open_file = open(myfile,'r').read()
+compile_file = compile(open_file,'','exec')
+encrypt = marshal.dumps(compile_file)
+print(myfile)
+code = open( str(myfile) + '_New_.py', 'w')
+code.write("import marshal\n")
+code.write('exec(marshal.loads('+repr(encrypt)+'))')
+print('The File Is Encrypted'+ str(myfile))
